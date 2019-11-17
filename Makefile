@@ -16,6 +16,6 @@ push:
 	@docker push $(NAME)
 
 login:
-  @docker log -u ${DOCKER_USER} -p ${DOCKER_PASS}
+	@docker log -u ${DOCKER_USER} -p ${DOCKER_PASS}
 
 .PHONY: build build-no-cache push login
