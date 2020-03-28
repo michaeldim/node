@@ -1,6 +1,9 @@
-FROM node:12.13.0-alpine
+FROM node:10.16.3-alpine
 
-RUN apk update && apk upgrade && \
-  apk -Uuv add --no-cache make g++ git python3 py3-pip jq openssh curl
+RUN apk add --no-cache --virtual .pipeline-deps readline linux-pam \
+  && apk add bash sudo shadow \
+  && apk del .pipeline-deps
 
-CMD ["node"]
+LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/local/bin/node"
+
+CMD [ "node" ]
